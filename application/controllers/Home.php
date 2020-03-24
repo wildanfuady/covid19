@@ -8,8 +8,8 @@ class Home extends CI_Controller {
 		$this->load->view('home');
 	}
 
-	public function hotline()
+	public function widget()
 	{
-		$this->load->view('hotline');
+		$this->load->view('widget');
 	}
 }
