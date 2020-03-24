@@ -98,7 +98,7 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 					<h2 class="mb-0 number-font" id="positif">0</h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="https://kawalcorona.com/uploads/sad-u6e.png" width="50" height="50" alt="Positif"> 
+					<img src="/themes/img/sad-u6e.png" width="50" height="50" alt="Positif"> 
 				</div>
 			</div>
 		</div>
@@ -113,7 +113,7 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 					<h2 class="mb-0 number-font" id="sembuh">0</h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="https://kawalcorona.com/uploads/happy-ipM.png" width="50" height="50" alt="Sembuh"> 
+					<img src="/themes/img/happy-ipM.png" width="50" height="50" alt="Sembuh"> 
 				</div>
 			</div>
 		</div>
@@ -128,7 +128,7 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 					<h2 class="mb-0 number-font" id="meninggal">0</h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="https://kawalcorona.com/uploads/emoji-LWx.png" width="50" height="50" alt="Meninggal"> 
+					<img src="/themes/img/emoji-LWx.png" width="50" height="50" alt="Meninggal"> 
 				</div>
 			</div>
 		</div>
@@ -143,7 +143,7 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 					<h2 class="mb-0 number-font" id="total">0<span>%</span></h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="https://kawalcorona.com/uploads/indonesia-PZq.png" width="50" height="50" alt="Meninggal"> 
+					<img src="/themes/img/indonesia-PZq.png" width="50" height="50" alt="Meninggal"> 
 				</div>
 			</div>
 		</div>
