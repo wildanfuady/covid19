@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <title>Update Status Penyebaran Virus Corona di Indonesia</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- Favicon -->
 <link rel="icon" href="<?php echo base_url('themes/img/bat.svg'); ?>" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -50,35 +53,6 @@
 	font-size: 20px;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-var d = new Date();
-var month = new Array();
-  month[0] = "Januari";
-  month[1] = "Februari";
-  month[2] = "Maret";
-  month[3] = "April";
-  month[4] = "Mei";
-  month[5] = "Juni";
-  month[6] = "Juli";
-  month[7] = "Agustus";
-  month[8] = "September";
-  month[9] = "Oktober";
-  month[10] = "November";
-  month[11] = "Desember";
-  
-$("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear());
-    $.ajax({url: "https://api.kawalcorona.com/indonesia/", success: function(result){
-     $("#positif").html(result[0].positif);
-     $("#sembuh").html(result[0].sembuh);
-     $("#meninggal").html(result[0].meninggal);
-     var tingkat_kematian = parseInt((result[0].meninggal / result[0].positif) * 100);
-     $("#total").html(tingkat_kematian + "%");
-
-    }});
-});
-</script>
 </head>
 <body>
 <div class="container text-center">
@@ -89,16 +63,25 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 		<h3><span id="date"></span></h3>
 	</div>
 	</div>
+	<?php
+	$json=file_get_contents('https://api.kawalcorona.com/indonesia');
+	$obj = json_decode($json);
+	foreach ($obj as $data){
+	$ganti_angka_positif = str_replace(",", "", $data->positif);
+	$ganti_angka_meninggal = str_replace(",", "", $data->meninggal);
+	$kematian = ($ganti_angka_meninggal / $ganti_angka_positif) * 100;
+	$total = number_format($kematian, 0, 0, ".");
+	?>
 	<div class="col-6 col-md-3 mb-3">
 	<div class="card bg-danger" id="show">
 		<div class="card-body">
 			<div class="d-flex">
 				<div class="text-white">
 					<p class="text-white mb-0 text">POSITIF</p>
-					<h2 class="mb-0 number-font" id="positif">0</h2>
+					<h2 class="mb-0 number-font" id="positif"><?= $data->positif ?></h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="/themes/img/sad-u6e.png" width="50" height="50" alt="Positif"> 
+					<img src="<?php echo base_url(); ?>themes/img/sad-u6e.png" width="50" height="50" alt="Positif"> 
 				</div>
 			</div>
 		</div>
@@ -110,10 +93,10 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 			<div class="d-flex">
 				<div class="text-white">
 					<p class="text-white mb-0 text">SEMBUH</p>
-					<h2 class="mb-0 number-font" id="sembuh">0</h2>
+					<h2 class="mb-0 number-font" id="sembuh"><?= $data->sembuh ?></h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="/themes/img/happy-ipM.png" width="50" height="50" alt="Sembuh"> 
+					<img src="<?php echo base_url(); ?>themes/img/happy-ipM.png" width="50" height="50" alt="Sembuh"> 
 				</div>
 			</div>
 		</div>
@@ -125,10 +108,10 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 			<div class="d-flex">
 				<div class="text-white">
 					<p class="text-white mb-0 text">MENINGGAL</p>
-					<h2 class="mb-0 number-font" id="meninggal">0</h2>
+					<h2 class="mb-0 number-font" id="meninggal"><?= $data->meninggal ?></h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="/themes/img/emoji-LWx.png" width="50" height="50" alt="Meninggal"> 
+					<img src="<?php echo base_url(); ?>themes/img/emoji-LWx.png" width="50" height="50" alt="Meninggal"> 
 				</div>
 			</div>
 		</div>
@@ -140,15 +123,16 @@ $("#date").html(d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear())
 			<div class="d-flex">
 				<div class="text-white">
 					<p class="text-white mb-0 text">KEMATIAN</p>
-					<h2 class="mb-0 number-font" id="total">0<span>%</span></h2>
+					<h2 class="mb-0 number-font" id="total"><?php echo $total; ?><span>%</span></h2>
 				</div>
 				<div class="ml-auto"> 
-					<img src="/themes/img/indonesia-PZq.png" width="50" height="50" alt="Meninggal"> 
+					<img src="<?php echo base_url(); ?>themes/img/indonesia-PZq.png" width="50" height="50" alt="Meninggal"> 
 				</div>
 			</div>
 		</div>
 	</div>
 	</div>
+	<?php } ?>
 </div>
 </div>
 </body>
